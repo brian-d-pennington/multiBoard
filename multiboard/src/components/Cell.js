@@ -21,9 +21,10 @@ class Cell extends React.Component {
         }) }
     
     render() {
+        // if/else logic
         return (
         <div className="cell ui segment" 
-            style={{width: '240px', height: '240px', backgroundColor: '#ffffcc' }}>
+            style={{width: '240px', height: '240px', backgroundColor: '#fff97d' }}>
             <div className="field" style={{ marginTop: '150px', paddingLeft: '1px' }}>
                     <input 
                     style={{display: 'none' }} 

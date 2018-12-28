@@ -1,11 +1,13 @@
 import React from 'react';
-import CellGrid from './CellGrid';
+import TopBar from './TopBar'
+;import CellGrid from './CellGrid';
 
 class App extends React.Component {
     render() {
         return (
-            <div>
-                 <CellGrid />
+            <div style={{backgroundColor: '#ffedcc'}}>
+                <TopBar />
+                <CellGrid />
             </div>
         );
     }
