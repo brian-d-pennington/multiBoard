@@ -4,21 +4,23 @@ import Cell from './Cell'
 class CellGrid extends React.Component {
     render() {
         return (
-            <div class="ui three column grid" style={{marginTop: '3px', marginLeft: '3px'}}>
-                <div class="row">
-                    <div class="column"><Cell /></div>
-                    <div class="column"><Cell /></div>
-                    <div class="column"><Cell /></div>
+            <div className="ui three column grid" style={{backgroundColor: '#ffedcc',
+                                                          paddingLeft: '220px',
+                                                          paddingTop: '10px'}}>
+                <div className="row">
+                    <div className="column"><Cell /></div>
+                    <div className="column"><Cell /></div>
+                    <div className="column"><Cell /></div>
                 </div>
-                <div class="row">
-                    <div class="column"><Cell /></div>
-                    <div class="column"><Cell /></div>
-                    <div class="column"><Cell /></div>
+                <div className="row">
+                    <div className="column"><Cell /></div>
+                    <div className="column"><Cell /></div>
+                    <div className="column"><Cell /></div>
                 </div>
-                <div class="row">
-                    <div class="column"><Cell /></div>
-                    <div class="column"><Cell /></div>
-                    <div class="column"><Cell /></div>
+                <div className="row">
+                    <div className="column"><Cell /></div>
+                    <div className="column"><Cell /></div>
+                    <div className="column"><Cell /></div>
                 </div>
             </div>
         );

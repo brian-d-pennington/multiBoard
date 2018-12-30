@@ -15,7 +15,7 @@ class Cell extends React.Component {
     FileUploadHandler = () => {
         const fd = new FormData();
         fd.append('file', this.state.selectedFile, this.state.selectedFile.name);
-        axios.post('https://us-central1-uploaderapp-25018.cloudfunctions.net/uploadFile', fd)
+        axios.post('https://capstone-multiboard.firebaseio.com/', fd)
         .then(res => {
             console.log(res);
         }) }
