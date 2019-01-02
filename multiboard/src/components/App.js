@@ -7,7 +7,7 @@ class App extends React.Component {
         return (
             <div>
                 <ArchiveBar />
-                <CellGrid style={{marginLeft: '150px'}}/> 
+                <CellGrid /> 
              </div>
         );
     }

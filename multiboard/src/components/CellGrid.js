@@ -5,7 +5,7 @@ class CellGrid extends React.Component {
     render() {
         return (
             <div className="ui three column grid" style={{backgroundColor: '#ffedcc',
-                                                          paddingLeft: '220px',
+                                                          paddingLeft: '210px',
                                                           paddingTop: '10px'}}>
                 <div className="row">
                     <div className="column"><Cell /></div>

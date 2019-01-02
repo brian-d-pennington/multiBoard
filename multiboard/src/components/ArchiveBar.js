@@ -1,4 +1,5 @@
 import React from 'react';
+import ArchiveList from './ArchiveList';
 
 class ArchiveBar extends React.Component {
     render() {
@@ -16,7 +17,7 @@ class ArchiveBar extends React.Component {
                 logged in user: 
                 </div> 
                 <div className="item">Archived Items</div>
-                <div className="item">list</div>
+                <div className="item"><ArchiveList /></div>
             </div>
         </div>
         );
