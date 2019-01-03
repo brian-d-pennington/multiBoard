@@ -31,7 +31,13 @@ class Cell extends React.Component {
     }
     
     fileDelete = () => {
-        //
+        let fileToDelete = storageRef.child('images/desert.jpg');
+        
+        fileToDelete.delete().then(function() {
+            console.log("file NOT removed");
+          }).catch(function(error) {
+            console.log("file NOT removed");
+          });
         this.setState({
             selectedFile: null,
             uploadSuccessful: false
