@@ -31,11 +31,11 @@ class Cell extends React.Component {
     }
     
     fileDelete = () => {
-        let fileToDelete = storageRef.child('images/desert.jpg');
-        
-        fileToDelete.delete().then(function() {
-            console.log("file NOT removed");
-          }).catch(function(error) {
+        let dbRef = firebase.storage().ref();
+        let fileToDelete = dbRef.child(this.state.selectedFile.name);
+        fileToDelete.delete().then(() => {
+            console.log("file removed");
+          }).catch((error) => {
             console.log("file NOT removed");
           });
         this.setState({
@@ -66,7 +66,7 @@ class Cell extends React.Component {
                 <div className="cell ui segment"
                 style={{width: '240px', height: '240px', backgroundColor: '#fff97d' }}>
                     <button className="ui button" style={{float: 'right', height: '5px', width: '5px',
-                    backgroundColor: '#fff97d', color: 'white' }}>X</button>
+                    backgroundColor: '#fff97d', color: 'white' }} onClick={this.fileDelete}>X</button>
                     <div className="pic container" >
                         <img src={ require('./images/cassette.jpg') } style={{
                             width: '170px', height: '155px', paddingLeft: '32px', paddingTop: '-25px'}} />
