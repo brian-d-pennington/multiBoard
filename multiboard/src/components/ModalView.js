@@ -1,9 +1,10 @@
 import React from 'react';
 import Modal from 'react-responsive-modal';
+import ReactAudioPlayer from 'react-audio-player';
 
 class ModalView extends React.Component {
     state = {
-      open: false,
+      open: false
     };
    
     onOpenModal = () => {
@@ -16,17 +17,24 @@ class ModalView extends React.Component {
    
     render() {
       const { open } = this.state;
-      return (
-        <div>
-          <button className="ui button" onClick={this.onOpenModal}>Enlarge</button>
-          <Modal open={open} onClose={this.onCloseModal} center>
-            <h2>Modal depends on the file type:</h2>
-            <h3>Audio: wav player</h3>
-            <h3>Image: pic viewer</h3>
-            <h3>Text: doc reader</h3>
-          </Modal>
-        </div>
-      );
+      console.log("props", this.props.file);
+      if (this.props.type === 'audio') {
+        return (
+          <div>
+            <button className="ui button" onClick={this.onOpenModal}>Enlarge</button>
+            <Modal open={open} onClose={this.onCloseModal} center>
+              <div className="audio modal">
+                <ReactAudioPlayer 
+                  src={this.props.file.name}
+                  autoPlay
+                  controls
+                />
+              </div>
+            </Modal>
+          </div>
+        );
+      } 
+        
     }
   }
    

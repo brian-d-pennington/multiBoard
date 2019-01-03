@@ -4,10 +4,18 @@ import ModalView from './ModalView';
 import firebase from 'firebase';
 
 class Cell extends React.Component {
-    state = {
-        selectedFile: null,
-        uploadSuccessful: false
-    }
+    constructor(props) {
+        super(props);
+    
+        this.state = {
+            selectedFile: null,
+            uploadSuccessful: false,
+            typeOfMediaFile: null,
+            fileAddress: null
+        }
+      }
+    
+    
 
     fileSelectedHandler = event => {
         console.log("file", event.target.files[0]);
@@ -17,7 +25,7 @@ class Cell extends React.Component {
     }
 
     FileUploadHandler = () => {
-        let realtimeRef= firebase.database().ref(`/filerefs`).set({
+        firebase.database().ref(`/filerefs`).set({
             name: this.state.selectedFile.name,
             type: this.state.selectedFile.type});
         let thisFile = this.state.selectedFile.name;
@@ -26,7 +34,9 @@ class Cell extends React.Component {
         storageRef.put(file).then((snapshot) => {
         console.log('Upload successful!');});
         this.setState({
-            uploadSuccessful: true
+            uploadSuccessful: true,
+            typeOfMediaFile: this.state.selectedFile.type,
+            fileAddress: storageRef
         })
     }
     
@@ -40,7 +50,9 @@ class Cell extends React.Component {
           });
         this.setState({
             selectedFile: null,
-            uploadSuccessful: false
+            uploadSuccessful: false,
+            typeOfMediaFile: null,
+            fileAddress: null
         })
     }
 
@@ -62,21 +74,58 @@ class Cell extends React.Component {
                 );
         }
         else {
-            return (
-                <div className="cell ui segment"
-                style={{width: '240px', height: '240px', backgroundColor: '#fff97d' }}>
-                    <button className="ui button" style={{float: 'right', height: '5px', width: '5px',
-                    backgroundColor: '#fff97d', color: 'white' }} onClick={this.fileDelete}>X</button>
-                    <div className="pic container" >
-                        <img src={ require('./images/cassette.jpg') } style={{
-                            width: '170px', height: '155px', paddingLeft: '32px', paddingTop: '-25px'}} />
+            if (this.state.typeOfMediaFile === "audio/mp3") {
+                console.log("this.state.fileAddress", this.state.fileAddress);
+                return (
+                    <div className="cell ui segment"
+                    style={{width: '240px', height: '240px', backgroundColor: '#fff97d' }}>
+                        <button className="ui button" style={{float: 'right', height: '5px', width: '5px',
+                        backgroundColor: '#fff97d', color: 'white' }} onClick={this.fileDelete}>X</button>
+                        <div className="pic container" >
+                            <img src={ require('./images/cassette.jpg') } style={{
+                                width: '170px', height: '155px', paddingLeft: '32px', paddingTop: '-25px'}} />
+                        </div>
+                        <div style={{paddingLeft: '55px'}}>
+                            <ModalView file={this.state.fileAddress} type={'audio'}/>
+                        </div>
+                        
                     </div>
-                    <div style={{paddingLeft: '55px'}}>
-                        <ModalView />
+                )
+            }
+            else if (this.state.typeOfMediaFile === "image/jpeg") {
+                return (
+                    <div className="cell ui segment"
+                    style={{width: '240px', height: '240px', backgroundColor: '#fff97d' }}>
+                        <button className="ui button" style={{float: 'right', height: '5px', width: '5px',
+                        backgroundColor: '#fff97d', color: 'white' }} onClick={this.fileDelete}>X</button>
+                        <div className="pic container" >
+                            <img src={ require('./images/cassette.jpg') } style={{
+                                width: '170px', height: '155px', paddingLeft: '32px', paddingTop: '-25px'}} />
+                        </div>
+                        <div style={{paddingLeft: '55px'}}>
+                            <ModalView />
+                        </div>
+                        
                     </div>
-                    
-                </div>
-            )
+                )
+            }
+            else {
+                return (
+                    <div className="cell ui segment"
+                    style={{width: '240px', height: '240px', backgroundColor: '#fff97d' }}>
+                        <button className="ui button" style={{float: 'right', height: '5px', width: '5px',
+                        backgroundColor: '#fff97d', color: 'white' }} onClick={this.fileDelete}>X</button>
+                        <div className="pic container" >
+                            <img src={ require('./images/cassette.jpg') } style={{
+                                width: '170px', height: '155px', paddingLeft: '32px', paddingTop: '-25px'}} />
+                        </div>
+                        <div style={{paddingLeft: '55px'}}>
+                            <ModalView />
+                        </div>
+                        
+                    </div>
+                )
+            }
         }
         
     }
