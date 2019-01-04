@@ -82,7 +82,8 @@ class Cell extends React.Component {
                         <button className="ui button" style={{float: 'right', height: '5px', width: '5px',
                         backgroundColor: '#fff97d', color: 'white' }} onClick={this.fileDelete}>X</button>
                         <div className="pic container" >
-                            <img src={ require('./images/cassette.jpg') } style={{
+                            <img src={ require('./images/cassette.jpg') } 
+                                style={{
                                 width: '170px', height: '155px', paddingLeft: '32px', paddingTop: '-25px'}} />
                         </div>
                         <div style={{paddingLeft: '55px'}}>
@@ -99,7 +100,7 @@ class Cell extends React.Component {
                         <button className="ui button" style={{float: 'right', height: '5px', width: '5px',
                         backgroundColor: '#fff97d', color: 'white' }} onClick={this.fileDelete}>X</button>
                         <div className="pic container" >
-                            <img src={ require('./images/cassette.jpg') } style={{
+                            <img src={ require('./images/image.jpg') } style={{
                                 width: '170px', height: '155px', paddingLeft: '32px', paddingTop: '-25px'}} />
                         </div>
                         <div style={{paddingLeft: '55px'}}>
@@ -116,7 +117,7 @@ class Cell extends React.Component {
                         <button className="ui button" style={{float: 'right', height: '5px', width: '5px',
                         backgroundColor: '#fff97d', color: 'white' }} onClick={this.fileDelete}>X</button>
                         <div className="pic container" >
-                            <img src={ require('./images/cassette.jpg') } style={{
+                            <img src={ require('./images/document.jpg') } style={{
                                 width: '170px', height: '155px', paddingLeft: '32px', paddingTop: '-25px'}} />
                         </div>
                         <div style={{paddingLeft: '55px'}}>

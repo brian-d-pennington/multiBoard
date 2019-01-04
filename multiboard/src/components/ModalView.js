@@ -34,6 +34,30 @@ class ModalView extends React.Component {
           </div>
         );
       } 
+      else if (this.props.type === 'image') {
+        return (
+          <div>
+            <button className="ui button" onClick={this.onOpenModal}>Enlarge</button>
+            <Modal open={open} onClose={this.onCloseModal} center>
+              <div className="image modal">
+                
+              </div>
+            </Modal>
+          </div>
+        )
+      }
+      else {
+        return (
+          <div>
+            <button className="ui button" onClick={this.onOpenModal}>Enlarge</button>
+            <Modal open={open} onClose={this.onCloseModal} center>
+              <div className="document modal">
+                
+              </div>
+            </Modal>
+          </div>
+        )
+      }
         
     }
   }
