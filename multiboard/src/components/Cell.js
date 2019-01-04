@@ -15,8 +15,6 @@ class Cell extends React.Component {
         }
       }
     
-    
-
     fileSelectedHandler = event => {
         console.log("file", event.target.files[0]);
         this.setState({
@@ -82,7 +80,7 @@ class Cell extends React.Component {
                         <button className="ui button" style={{float: 'right', height: '5px', width: '5px',
                         backgroundColor: '#fff97d', color: 'white' }} onClick={this.fileDelete}>X</button>
                         <div className="pic container" >
-                            <img src={ require('./images/cassette.jpg') } 
+                            <img src={ require('./images/cassette.jpg') } alt={this.state.fileAddress.name}
                                 style={{
                                 width: '170px', height: '155px', paddingLeft: '32px', paddingTop: '-25px'}} />
                         </div>
@@ -96,7 +94,7 @@ class Cell extends React.Component {
             else if (this.state.typeOfMediaFile === "image/jpeg") {
                 return (
                     <div className="cell ui segment"
-                    style={{width: '240px', height: '240px', backgroundColor: '#fff97d' }}>
+                    style={{width: '240px', height: '240px', backgroundColor: '#fff97d' }} alt={this.state.fileAddress.name}>
                         <button className="ui button" style={{float: 'right', height: '5px', width: '5px',
                         backgroundColor: '#fff97d', color: 'white' }} onClick={this.fileDelete}>X</button>
                         <div className="pic container" >
@@ -104,7 +102,7 @@ class Cell extends React.Component {
                                 width: '170px', height: '155px', paddingLeft: '32px', paddingTop: '-25px'}} />
                         </div>
                         <div style={{paddingLeft: '55px'}}>
-                            <ModalView />
+                            <ModalView file={this.state.fileAddress} type={this.state.typeOfMediaFile}/>
                         </div>
                         
                     </div>
@@ -117,11 +115,11 @@ class Cell extends React.Component {
                         <button className="ui button" style={{float: 'right', height: '5px', width: '5px',
                         backgroundColor: '#fff97d', color: 'white' }} onClick={this.fileDelete}>X</button>
                         <div className="pic container" >
-                            <img src={ require('./images/document.jpg') } style={{
+                            <img src={ require('./images/document.jpg') } alt={this.state.fileAddress.name} style={{
                                 width: '170px', height: '155px', paddingLeft: '32px', paddingTop: '-25px'}} />
                         </div>
                         <div style={{paddingLeft: '55px'}}>
-                            <ModalView />
+                        <ModalView file={this.state.fileAddress} type={this.state.typeOfMediaFile}/>
                         </div>
                         
                     </div>

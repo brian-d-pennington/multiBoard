@@ -1,14 +1,28 @@
 import React from 'react';
 import Modal from 'react-responsive-modal';
 import ReactAudioPlayer from 'react-audio-player';
+import FileViewer from 'react-file-viewer';
 
 class ModalView extends React.Component {
     state = {
-      open: false
+      open: false,
+      FileTypeToConvert: null
     };
    
     onOpenModal = () => {
       this.setState({ open: true });
+      const localFile = this.props.type;
+      if (this.props.type !== 'audio') {
+        if (localFile === '.image/jpeg') {
+          this.setState({FileTypeToConvert: 'jpg'})
+        }
+        else if (localFile === '.application/pdf') {
+          this.setState({FileTypeToConvert: 'pdf'})
+        }
+        else {
+          this.setState({FileTypeToConvert: 'docx'})
+        }
+      }
     };
    
     onCloseModal = () => {
@@ -34,31 +48,21 @@ class ModalView extends React.Component {
           </div>
         );
       } 
-      else if (this.props.type === 'image') {
-        return (
-          <div>
-            <button className="ui button" onClick={this.onOpenModal}>Enlarge</button>
-            <Modal open={open} onClose={this.onCloseModal} center>
-              <div className="image modal">
-                
-              </div>
-            </Modal>
-          </div>
-        )
-      }
       else {
         return (
           <div>
             <button className="ui button" onClick={this.onOpenModal}>Enlarge</button>
             <Modal open={open} onClose={this.onCloseModal} center>
-              <div className="document modal">
-                
+              <div className="image and doc modal">
+                 <FileViewer 
+                  fileType={this.state.FileTypeToConvert}
+                  filePath={this.props.file.name}
+                 />
               </div>
             </Modal>
           </div>
         )
-      }
-        
+      } 
     }
   }
    
