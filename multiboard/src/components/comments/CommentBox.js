@@ -2,27 +2,27 @@ import React from 'react';
 import CommentForm from './CommentForm';
 import CommentList from './CommentList';
 
-const CommentBox = React.createClass({
-    getInitialState = () => {
-      return {
-        commentData: [],
-        data: commentData
+class CommentBox extends React.Component {
+      state = {
+        data: []
       }
-    },
+    
     handleCommentSubmit = comment => {
-      this.props.data.push(comment);
-      var comments = this.state.data;
-      var newComments = comments.concat([comment]);
-      this.setState({data: newComments});
-    },
-    render: function() {
+      this.state.data.push(comment);
+      let comments = this.state.data;
+      console.log("let comments: " +comments);
+      //let newComments = comments.concat([comment]);
+      //console.log("newComments" +newComments);
+      this.setState({data: comments});
+    }
+    render() {
       return (
         <div className="comment-box">
-          <CommentForm data={this.props.data} onCommentSubmit={this.handleCommentSubmit} />
-          <CommentList data={this.props.data} />
+          <CommentForm data={this.state.data} onCommentSubmit={this.handleCommentSubmit} />
+          <CommentList data={this.state.data} />
         </div>
       );
     }
-  }); 
+  }; 
 
   export default CommentBox;

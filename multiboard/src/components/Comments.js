@@ -1,15 +1,13 @@
 import React from 'react';
+import CommentBox from './comments/CommentBox';
 
 class Comments extends React.Component {
     render() {
-        state = {
-            commentData: []
-        }
-        return (
-            <div className="comment-box">
-              <CommentBox data={commentData}/>
-            </div>
-          );
+    return (
+        <div className="comment-box">
+            <CommentBox />
+        </div>
+        );
     }
 }
     

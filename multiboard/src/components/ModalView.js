@@ -2,6 +2,7 @@ import React from 'react';
 import Modal from 'react-responsive-modal';
 import ReactAudioPlayer from 'react-audio-player';
 import FileViewer from 'react-file-viewer';
+import Comments from './Comments';
 
 class ModalView extends React.Component {
     state = {
@@ -40,10 +41,12 @@ class ModalView extends React.Component {
             <Modal open={open} onClose={this.onCloseModal} center>
               <div className="audio modal">
                 <ReactAudioPlayer 
-                  src={this.props.file}
-                  autoPlay
-                  controls
+                  src={this.props.file.name}
+                  autoPlay={true}
+                  controls={true}
+                  style={{marginTop: '20px', marginBottom: '20px'}}
                 />
+                <Comments />
               </div>
             </Modal>
           </div>

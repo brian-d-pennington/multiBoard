@@ -1,10 +1,10 @@
 import React from 'react';
 
-const CommentForm = React.createClass({
+class CommentForm extends React.Component {
     handleSubmit = e => {
       e.preventDefault();
-      var authorVal = e.target[0].value.trim();
-      var textVal = e.target[1].value.trim();
+      let authorVal = e.target[0].value.trim();
+      let textVal = e.target[1].value.trim();
       if (!textVal || !authorVal) {
         return;
       }
@@ -12,22 +12,22 @@ const CommentForm = React.createClass({
       e.target[0].value = '';
       e.target[1].value = '';
       return;
-    },
-    render = () => {
+    }
+    render() {
       return(
-        <form className="comment-form form-group" onSubmit={this.handleSubmit}>
+        <form className="ui form" onSubmit={this.handleSubmit}>
           <div className="input-group">
             <span className="input-group-addon">Name</span>
-            <input type="text" placeholder="Your name" className="form-control" />
+            <input type="text" placeholder="Your name" className="ui input" />
           </div>
           <div className="input-group">
             <span className="input-group-addon">Comment</span>
-            <input type="text" placeholder="Say something..." className="form-control" />
+            <input type="text" placeholder="Say something..." className="ui input" />
           </div>
-          <input type="submit" value="Post" className="btn btn-primary" />
+          <input type="submit" value="Post" className="ui button" style={{marginTop: '5px'}} />
         </form>
       );
     }
-  });
+  };
 
   export default CommentForm;
