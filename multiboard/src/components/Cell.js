@@ -16,16 +16,16 @@ class Cell extends React.Component {
       }
     
     fileSelectedHandler = event => {
-        console.log("file", event.target.files[0]);
+        //console.log("file", event.target.files[0]);
         this.setState({
             selectedFile: event.target.files[0]
         })
     }
 
     FileUploadHandler = () => {
-        firebase.database().ref(`/filerefs`).set({
-            name: this.state.selectedFile.name,
-            type: this.state.selectedFile.type});
+        //firebase.database().ref(`/filerefs`).set({
+        //    name: this.state.selectedFile.name,
+        //    type: this.state.selectedFile.type});
         let thisFile = this.state.selectedFile.name;
         let storageRef = firebase.storage().ref(thisFile);
         let file = this.state.selectedFile;
@@ -94,12 +94,12 @@ class Cell extends React.Component {
             else if (this.state.typeOfMediaFile === "image/jpeg") {
                 return (
                     <div className="cell ui segment"
-                    style={{width: '240px', height: '240px', backgroundColor: '#fff97d' }} alt={this.state.fileAddress.name}>
+                    style={{width: '240px', height: '240px', backgroundColor: '#fff97d' }}>
                         <button className="ui button" style={{float: 'right', height: '5px', width: '5px',
                         backgroundColor: '#fff97d', color: 'white' }} onClick={this.fileDelete}>X</button>
                         <div className="pic container" >
-                            <img src={ require('./images/image.jpg') } style={{
-                                width: '170px', height: '155px', paddingLeft: '32px', paddingTop: '-25px'}} />
+                            <img src={ require('./images/image.jpg') } alt={this.state.fileAddress.name}
+                             style={{width: '170px', height: '155px', paddingLeft: '32px', paddingTop: '-25px'}} />
                         </div>
                         <div style={{paddingLeft: '55px'}}>
                             <ModalView file={this.state.fileAddress} type={this.state.typeOfMediaFile}/>

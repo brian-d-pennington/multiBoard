@@ -27,6 +27,7 @@ class ModalView extends React.Component {
    
     onCloseModal = () => {
       this.setState({ open: false });
+      this.setState({FileTypeToConvert: null});
     };
    
     render() {
@@ -39,7 +40,7 @@ class ModalView extends React.Component {
             <Modal open={open} onClose={this.onCloseModal} center>
               <div className="audio modal">
                 <ReactAudioPlayer 
-                  src={this.props.file.name}
+                  src={this.props.file}
                   autoPlay
                   controls
                 />
@@ -48,15 +49,30 @@ class ModalView extends React.Component {
           </div>
         );
       } 
+      else if (this.props.type === '.image/jpeg') {
+        return (
+          <div>
+            <button className="ui button" onClick={this.onOpenModal}>Enlarge</button>
+            <Modal open={open} onClose={this.onCloseModal} center>
+              <div className="image modal">
+                 <FileViewer 
+                  fileType={this.state.FileTypeToConvert}
+                  filePath='https://firebasestorage.googleapis.com/v0/b/capstone-multiboard.appspot.com/o/nicooooo.jpg?alt=media&token=b3215d10-2790-48b9-a6c0-6c19378da149'
+                 />
+              </div>
+            </Modal>
+          </div>
+        )
+      } 
       else {
         return (
           <div>
             <button className="ui button" onClick={this.onOpenModal}>Enlarge</button>
             <Modal open={open} onClose={this.onCloseModal} center>
-              <div className="image and doc modal">
+              <div className="pdf modal">
                  <FileViewer 
                   fileType={this.state.FileTypeToConvert}
-                  filePath={this.props.file.name}
+                  filePath='https://firebasestorage.googleapis.com/v0/b/capstone-multiboard.appspot.com/o/sampleAcrobatFile.pdf?alt=media&token=fa21d60d-2e4c-4101-a4ad-72fc1da05f5a'
                  />
               </div>
             </Modal>
