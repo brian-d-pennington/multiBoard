@@ -16,7 +16,6 @@ class Cell extends React.Component {
       }
     
     fileSelectedHandler = event => {
-        //console.log("file", event.target.files[0]);
         this.setState({
             selectedFile: event.target.files[0]
         })

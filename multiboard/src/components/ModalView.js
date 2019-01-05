@@ -3,7 +3,6 @@ import Modal from 'react-responsive-modal';
 import ReactAudioPlayer from 'react-audio-player';
 import FileViewer from 'react-file-viewer';
 import CommentBox from './comments/CommentBox';
-import firebase from 'firebase';
 
 class ModalView extends React.Component {
     state = {
@@ -47,9 +46,8 @@ class ModalView extends React.Component {
               <div className="audio modal">
                 <ReactAudioPlayer 
                   src={this.props.file.name}
-                  autoPlay={true}
+                  autoPlay={false}
                   controls={true}
-                  style={{marginTop: '20px', marginBottom: '20px'}}
                 />
                 <CommentBox />
               </div>
