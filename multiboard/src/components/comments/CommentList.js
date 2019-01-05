@@ -5,7 +5,7 @@ class CommentList extends React.Component {
     render() {
         return (
         <div className="comment-list">
-            {this.props.data.map(function(c){
+            {this.props.data.map((c) => {
                 return (
                 <Comment author={c.author} text={c.text} />
             );

@@ -2,16 +2,19 @@ import React from 'react';
 import Modal from 'react-responsive-modal';
 import ReactAudioPlayer from 'react-audio-player';
 import FileViewer from 'react-file-viewer';
-import Comments from './Comments';
+import CommentBox from './comments/CommentBox';
+import firebase from 'firebase';
 
 class ModalView extends React.Component {
     state = {
       open: false,
-      FileTypeToConvert: null
+      FileTypeToConvert: null,
+      fileReference: null
     };
    
     onOpenModal = () => {
       this.setState({ open: true });
+      this.setState({fileReference: this.props.file});
       const localFile = this.props.type;
       if (this.props.type !== 'audio') {
         if (localFile === '.image/jpeg') {
@@ -24,11 +27,13 @@ class ModalView extends React.Component {
           this.setState({FileTypeToConvert: 'docx'})
         }
       }
+
     };
    
     onCloseModal = () => {
       this.setState({ open: false });
       this.setState({FileTypeToConvert: null});
+      this.setState({fileReference: null}); //
     };
    
     render() {
@@ -46,7 +51,7 @@ class ModalView extends React.Component {
                   controls={true}
                   style={{marginTop: '20px', marginBottom: '20px'}}
                 />
-                <Comments />
+                <CommentBox />
               </div>
             </Modal>
           </div>
