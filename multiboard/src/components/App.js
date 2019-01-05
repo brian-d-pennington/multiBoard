@@ -15,6 +15,7 @@ class App extends React.Component {
           };
           firebase.initializeApp(config);
     }
+
     render() {
         return (
             <div>
