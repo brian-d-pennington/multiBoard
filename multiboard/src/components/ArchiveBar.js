@@ -15,7 +15,8 @@ class ArchiveBar extends React.Component {
                 multiBOARD
                 </div> 
                 <Login /> 
-                <div className="item"><ArchiveList /></div>
+                <div className="item" 
+                onDragOver={(e) => this.onDragOver(e)}><ArchiveList /></div>
             </div>
         </div>
         );

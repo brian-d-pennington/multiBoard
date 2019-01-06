@@ -30,7 +30,7 @@ class Login extends React.Component {
                     <div className="ui input" style={{marginBottom: '3px'}}>
                         <input  type="password" placeholder="Password"></input>
                     </div>
-                    <button className="ui button" onClick={this.loginHandler}>
+                    <button className="ui button" style={{marginBottom: '3px'}} onClick={this.loginHandler}>
                     Login
                     </button>
                 </div>

@@ -11,7 +11,8 @@ class Cell extends React.Component {
             selectedFile: null,
             uploadSuccessful: false,
             typeOfMediaFile: null,
-            fileAddress: null
+            fileAddress: null,
+            activeCell: this.props.active
         }
       }
     
@@ -30,8 +31,10 @@ class Cell extends React.Component {
         this.setState({
             uploadSuccessful: true,
             typeOfMediaFile: this.state.selectedFile.type,
-            fileAddress: storageRef
+            fileAddress: storageRef,
+            activeCell: true
         })
+        console.log("active cell:", this.state.activeCell);
     }
     
     fileDelete = () => {
@@ -45,7 +48,8 @@ class Cell extends React.Component {
         this.setState({
             selectedFile: null,
             uploadSuccessful: false,
-            typeOfMediaFile: null
+            typeOfMediaFile: null,
+            activeCell: false
         })
     }
 
