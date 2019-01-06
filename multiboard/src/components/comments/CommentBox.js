@@ -5,14 +5,7 @@ import firebase from 'firebase';
 
 class CommentBox extends React.Component {
     state = {
-      data: [{ 
-        author:"Shawn Spencer", 
-        text:"I've heard it both ways"
-      },
-      { 
-        author:"Burton Guster", 
-        text:"You hear about Pluto? That's messed up" 
-      }]
+      data: []
     };
     
     handleCommentSubmit = comment => {

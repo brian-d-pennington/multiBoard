@@ -16,10 +16,14 @@ class App extends React.Component {
           firebase.initializeApp(config);
     }
 
+    onDragOver = (ev) => {
+        ev.preventDefault();
+    }
+
     render() {
         return (
             <div>
-                <ArchiveBar />
+                <ArchiveBar onDragOver={(e) => this.onDragOver(e)}/>
                 <CellGrid /> 
              </div>
         );

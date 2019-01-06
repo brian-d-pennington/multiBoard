@@ -12,7 +12,8 @@
     "react-dom": "^16.7.0",
     "react-file-viewer": "^0.5.0",
     "react-responsive-modal": "^3.5.1",
-    "react-scripts": "2.1.2"
+    "react-scripts": "2.1.2",
+    "react-timestamp": "^4.4.0"
   },
   "scripts": {
     "start": "react-scripts start",
