@@ -5,9 +5,9 @@ class CommentList extends React.Component {
     render() {
         return (
         <div className="comment-list">
-            {this.props.data.map((c) => {
+            {this.props.data.map((c, index) => {
                 return (
-                <Comment author={c.author} text={c.text} />
+                <Comment key={this.props.data[index]} author={c.author} text={c.text} />
             );
             })}
         </div>

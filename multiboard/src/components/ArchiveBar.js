@@ -15,7 +15,6 @@ class ArchiveBar extends React.Component {
                 multiBOARD
                 </div> 
                 <Login /> 
-                <div className="item">Archived Items</div>
                 <div className="item"><ArchiveList /></div>
             </div>
         </div>

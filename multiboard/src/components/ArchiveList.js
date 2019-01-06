@@ -2,32 +2,21 @@ import React from 'react';
 
 class ArchiveList extends React.Component {
     state = {
-        archivedItems: []
+        archivedItems: ["Archived Items:"]
     }
 
-    // set current list state
-    /* 
-    addToArchiveList = event => {
-        this.setState({
-            // archivedItems: archivedItems.push(event.target.files[0]) **add functionality later
-            archivedItems: [null]
-        })
-    }
 
-    ArchiveListHandler = () => {
-        if (archivedItems.length != null) {
-            listItems = archivedItems.map((archivedItem) =>
-            <li>{archivedItem}</li>
-        )}
-        else {
-            return 
-        }
-    }
-*/
 
     render() {
-        return <p>(none currently)</p>;
+        return (
+            <div className="item">
+                {this.state.archivedItems.map((item, index) => {
+                    return (
+                    <div key={this.state.archivedItems[index]}>{item}</div>);})}
+            </div>
+            );
     }
 }
 
 export default ArchiveList;
+
