@@ -3,10 +3,6 @@ import ArchiveList from './ArchiveList';
 import Login from './Login';
 
 class ArchiveBar extends React.Component {
-    
-    onDragOver = (ev) => {
-        ev.preventDefault();
-    }
     render() {
         return (
         <div className="ui vertical inverted sidebar menu left overlay visible" style={{width: '200px' }}>
@@ -19,9 +15,7 @@ class ArchiveBar extends React.Component {
                 multiBOARD
                 </div> 
                 <Login /> 
-                <div className="item" 
-                onDragOver={(e) => this.onDragOver(e)}
-                onDrop={(e) => this.onDrop(e, "complete")}><ArchiveList /></div>
+                <div className="item"><ArchiveList /></div>
             </div>
         </div>
         );
