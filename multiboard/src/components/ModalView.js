@@ -16,11 +16,11 @@ class ModalView extends React.Component {
       this.setState({fileReference: this.props.file});
       const localFile = this.props.type;
       if (this.props.type !== 'audio') {
-        if (localFile === '.image/jpeg') {
-          this.setState({FileTypeToConvert: 'jpg'})
-        }
-        else if (localFile === '.application/pdf') {
+        if (localFile === '.application/pdf') {
           this.setState({FileTypeToConvert: 'pdf'})
+        }
+        else if (localFile === '.image/jpg') {
+          this.setState({FileTypeToConvert: 'jpg'})
         }
         else {
           this.setState({FileTypeToConvert: 'docx'})
@@ -34,10 +34,10 @@ class ModalView extends React.Component {
       this.setState({FileTypeToConvert: null});
       this.setState({fileReference: null}); //
     };
-   
+    // src={this.props.file.name}
     render() {
       const { open } = this.state;
-      console.log("props", this.props.file);
+      console.log("props", this.props.type);
       if (this.props.type === 'audio') {
         return (
           <div>
@@ -45,7 +45,7 @@ class ModalView extends React.Component {
             <Modal open={open} onClose={this.onCloseModal} center>
               <div className="audio modal">
                 <ReactAudioPlayer 
-                  src={this.props.file.name}
+                  src='http://nonagon.us/sites/default/files/Nonagon%20-%20Vikings%20%28Music%20Box%20Remix%29.mp3'
                   autoPlay={false}
                   controls={true}
                 />
@@ -55,7 +55,7 @@ class ModalView extends React.Component {
           </div>
         );
       } 
-      else if (this.props.type === '.image/jpeg') {
+      else if (this.props.type === 'image') {
         return (
           <div>
             <button className="ui button" onClick={this.onOpenModal}>Enlarge</button>
@@ -63,8 +63,9 @@ class ModalView extends React.Component {
               <div className="image modal">
                  <FileViewer 
                   fileType={this.state.FileTypeToConvert}
-                  filePath='https://firebasestorage.googleapis.com/v0/b/capstone-multiboard.appspot.com/o/nicooooo.jpg?alt=media&token=b3215d10-2790-48b9-a6c0-6c19378da149'
+                  filePath='https://res.cloudinary.com/demo/image/upload/c_fit,w_280,q_80/sheep.jpg'
                  />
+                 <CommentBox />
               </div>
             </Modal>
           </div>
@@ -75,11 +76,12 @@ class ModalView extends React.Component {
           <div>
             <button className="ui button" onClick={this.onOpenModal}>Enlarge</button>
             <Modal open={open} onClose={this.onCloseModal} center>
-              <div className="pdf modal">
+              <div className="document modal">
                  <FileViewer 
                   fileType={this.state.FileTypeToConvert}
-                  filePath='https://firebasestorage.googleapis.com/v0/b/capstone-multiboard.appspot.com/o/sampleAcrobatFile.pdf?alt=media&token=fa21d60d-2e4c-4101-a4ad-72fc1da05f5a'
+                  filePath='http://www.africau.edu/images/default/sample.pdf'
                  />
+                 <CommentBox />
               </div>
             </Modal>
           </div>

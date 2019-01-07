@@ -12,10 +12,22 @@ class Cell extends React.Component {
             uploadSuccessful: false,
             typeOfMediaFile: null,
             fileAddress: null,
-            activeCell: this.props.active
+            toClearCell: this.props.clearCell
         }
       }
-    
+
+    clearCellOnArchive = () => {
+        if (this.state.toClearCell === true) {
+            this.setState({
+                selectedFile: null,
+                uploadSuccessful: false,
+                typeOfMediaFile: null,
+                toClearCell: false
+            });
+            console.log("File ref moved to Archives");
+        }
+    }
+
     fileSelectedHandler = event => {
         this.setState({
             selectedFile: event.target.files[0]
@@ -26,15 +38,15 @@ class Cell extends React.Component {
         let thisFile = this.state.selectedFile.name;
         let storageRef = firebase.storage().ref(thisFile);
         let file = this.state.selectedFile;
+        console.log("After image upload: ", this.state.selectedFile.type);
         storageRef.put(file).then((snapshot) => {
         console.log('Upload successful!');});
         this.setState({
             uploadSuccessful: true,
             typeOfMediaFile: this.state.selectedFile.type,
-            fileAddress: storageRef,
-            activeCell: true
-        })
-        console.log("active cell:", this.state.activeCell);
+            fileAddress: storageRef
+        });
+        
     }
     
     fileDelete = () => {
