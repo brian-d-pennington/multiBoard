@@ -36,15 +36,15 @@ class Cell extends React.Component {
 
     FileUploadHandler = () => {
         let thisFile = this.state.selectedFile.name;
+        console.log("thisFile: ", thisFile)
         let storageRef = firebase.storage().ref(thisFile);
         let file = this.state.selectedFile;
-        console.log("After image upload: ", this.state.selectedFile.type);
         storageRef.put(file).then((snapshot) => {
         console.log('Upload successful!');});
         this.setState({
             uploadSuccessful: true,
             typeOfMediaFile: this.state.selectedFile.type,
-            fileAddress: storageRef
+            fileAddress: thisFile  // ??
         });
         
     }
@@ -84,7 +84,6 @@ class Cell extends React.Component {
         }
         else {
             if (this.state.typeOfMediaFile === "audio/mp3") {
-                console.log("this.state.fileAddress", this.state.fileAddress);
                 return (
                     <div className="cell ui segment"
                     style={{width: '240px', height: '240px', backgroundColor: '#fff97d' }}>
@@ -113,7 +112,7 @@ class Cell extends React.Component {
                              style={{width: '170px', height: '155px', paddingLeft: '32px', paddingTop: '-25px'}} />
                         </div>
                         <div style={{paddingLeft: '55px'}}>
-                            <ModalView file={this.state.fileAddress} type={this.state.typeOfMediaFile}/>
+                            <ModalView file={this.state.fileAddress} type={'image'}/>
                         </div>
                         
                     </div>
