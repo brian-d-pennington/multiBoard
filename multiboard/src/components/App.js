@@ -28,14 +28,16 @@ class App extends React.Component {
     }
 
     onDrop = (ev) => {
-        ev.setState({clearCellData: true});
+            ev.setState({clearCellData: true});
+            console.log("Cell clear function triggered");
+        
     }
 
     render() {
         return (
             <div>
                 <ArchiveBar onDragOver={(e) => this.onDragOver(e)}
-                            onDrop={(e) => this.onDrop(e, "complete")}/>
+                            onDrop={(e) => this.onDrop(e)}/>
                 <div className="ui three column grid" style={{
                     backgroundColor: '#ffedcc',
                     paddingLeft: '210px',

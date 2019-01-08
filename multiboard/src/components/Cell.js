@@ -12,7 +12,7 @@ class Cell extends React.Component {
             uploadSuccessful: false,
             typeOfMediaFile: null,
             fileAddress: null,
-            toClearCell: this.props.clearCell
+            toClearCell: this.props.clearCel
         }
       }
 
@@ -40,11 +40,12 @@ class Cell extends React.Component {
         let storageRef = firebase.storage().ref(thisFile);
         let file = this.state.selectedFile;
         storageRef.put(file).then((snapshot) => {
-        console.log('Upload successful!');});
+        console.log(snapshot);});
         this.setState({
             uploadSuccessful: true,
             typeOfMediaFile: this.state.selectedFile.type,
-            fileAddress: thisFile  // ??
+            fileAddress: thisFile,
+            fileAddress: file
         });
         
     }
@@ -129,7 +130,7 @@ class Cell extends React.Component {
                                 width: '170px', height: '155px', paddingLeft: '32px', paddingTop: '-25px'}} />
                         </div>
                         <div style={{paddingLeft: '55px'}}>
-                        <ModalView file={this.state.fileAddress} type={this.state.typeOfMediaFile}/>
+                        <ModalView file={this.state.fileAddress} address={this.state.fileAddress} type={this.state.typeOfMediaFile}/>
                         </div>
                         
                     </div>
