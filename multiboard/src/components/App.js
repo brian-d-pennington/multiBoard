@@ -28,16 +28,18 @@ class App extends React.Component {
     }
 
     onDrop = (ev) => {
-            ev.setState({clearCellData: true});
-            console.log("Cell clear function triggered");
-        
-    }
+            this.setState({clearCellData: true});
+            setTimeout(() => {
+                this.setState({clearCellData: false})
+            }, 2000);
+        }
 
     render() {
         return (
             <div>
-                <ArchiveBar onDragOver={(e) => this.onDragOver(e)}
-                            onDrop={(e) => this.onDrop(e)}/>
+                <div onDragOver={(e) => this.onDragOver(e)} onDrop={(e) => this.onDrop(e)}>   
+                    <ArchiveBar />
+                </div> 
                 <div className="ui three column grid" style={{
                     backgroundColor: '#ffedcc',
                     paddingLeft: '210px',
@@ -48,32 +50,32 @@ class App extends React.Component {
                         <Cell clearCell={this.state.clearCellData}/></div>
                     <div className="column" draggable
                     onDragStart={(e) => this.onDragStart(e)}>
-                        <Cell clearCel={this.state.clearCellData}/></div>
+                        <Cell clearCell={this.state.clearCellData}/></div>
                     <div className="column" draggable
                     onDragStart={(e) => this.onDragStart(e)}>
-                        <Cell clearCel={this.state.clearCellData}/></div>
+                        <Cell clearCell={this.state.clearCellData}/></div>
                 </div>
                 <div className="row">
                     <div className="column" draggable
                     onDragStart={(e) => this.onDragStart(e)}>
-                        <Cell clearCel={this.state.clearCellData}/></div>
+                        <Cell clearCell={this.state.clearCellData}/></div>
                     <div className="column" draggable
                     onDragStart={(e) => this.onDragStart(e)}>
-                        <Cell clearCel={this.state.clearCellData}/></div>
+                        <Cell clearCell={this.state.clearCellData}/></div>
                     <div className="column" draggable
                     onDragStart={(e) => this.onDragStart(e)}>
-                        <Cell clearCel={this.state.clearCellData}/></div>
+                        <Cell clearCell={this.state.clearCellData}/></div>
                 </div>
                 <div className="row">
                     <div className="column" draggable
                     onDragStart={(e) => this.onDragStart(e)}>
-                        <Cell clearCel={this.state.clearCellData}/></div>
+                        <Cell clearCell={this.state.clearCellData}/></div>
                     <div className="column" draggable
                     onDragStart={(e) => this.onDragStart(e)}>
-                        <Cell clearCel={this.state.clearCellData}/></div>
+                        <Cell clearCell={this.state.clearCellData}/></div>
                     <div className="column" draggable
                     onDragStart={(e) => this.onDragStart(e)}>
-                        <Cell clearCel={this.state.clearCellData}/></div>
+                        <Cell clearCell={this.state.clearCellData}/></div>
                 </div>
             </div>
              </div>

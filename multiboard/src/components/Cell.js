@@ -1,5 +1,4 @@
 import React from 'react';
-//import axios from 'axios';
 import ModalView from './ModalView';
 import firebase from 'firebase';
 
@@ -12,20 +11,19 @@ class Cell extends React.Component {
             uploadSuccessful: false,
             typeOfMediaFile: null,
             fileAddress: null,
-            toClearCell: this.props.clearCel
+            toClearCell: this.props.clearCell
         }
       }
 
-    clearCellOnArchive = () => {
-        if (this.state.toClearCell === true) {
-            this.setState({
-                selectedFile: null,
-                uploadSuccessful: false,
-                typeOfMediaFile: null,
-                toClearCell: false
-            });
-            console.log("File ref moved to Archives");
-        }
+    clearCellOnArchive = () => {  //to be triggered if toClearCell = true
+         this.setState({
+            selectedFile: null,
+            uploadSuccessful: false,
+            typeOfMediaFile: null,
+            toClearCell: false
+        });
+        console.log("File ref moved to Archives");
+        
     }
 
     fileSelectedHandler = event => {
@@ -43,7 +41,7 @@ class Cell extends React.Component {
         this.setState({
             uploadSuccessful: true,
             typeOfMediaFile: this.state.selectedFile.type,
-            fileAddress: thisFile,
+            //fileAddress: thisFile,
             fileAddress: file
         });
         
@@ -66,6 +64,10 @@ class Cell extends React.Component {
     }
 
     render() {
+        if (this.props.clearCell === true && this.state.selectedFile != null) {
+            this.clearCellOnArchive();
+        }
+        
         if (!this.state.uploadSuccessful) {
             return (
                 <div className="cell ui segment" 

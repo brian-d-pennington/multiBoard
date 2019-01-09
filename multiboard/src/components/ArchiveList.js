@@ -2,14 +2,14 @@ import React from 'react';
 
 class ArchiveList extends React.Component {
     state = {
-        archivedItems: ["Archived Items:"]
+        archivedItems: []
     }
-
-
 
     render() {
         return (
-            <div className="item">
+            <div className="item">Drag Items to Archive <br />
+                <br />
+                                    [  H  E  R  E  ]
                 {this.state.archivedItems.map((item, index) => {
                     return (
                     <div key={this.state.archivedItems[index]}>{item}</div>);})}

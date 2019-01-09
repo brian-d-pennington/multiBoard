@@ -19,11 +19,9 @@ class Login extends React.Component {
     loginHandler = () => {
         const email = this.state.userEmail; 
         const password = this.state.userPass;
-        console.log("Email variable: "+email);
         const auth = firebase.auth();
         const promise = auth.signInWithEmailAndPassword(email, password);
-        promise.catch(
-            alert("Not a registered login!"));
+        promise.catch(e => console.log(e.message));
         this.setState({loggedIn: true });
     }
 
