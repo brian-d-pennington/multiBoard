@@ -4,6 +4,7 @@ import ReactAudioPlayer from 'react-audio-player';
 import CommentBox from './comments/CommentBox';
 import firebase from 'firebase';
 import Timestamp from 'react-timestamp';
+import DisplayIframe from './DisplayIframe';
 
 
 class ModalView extends React.Component {
@@ -29,10 +30,9 @@ class ModalView extends React.Component {
       this.setState({fileReference: null}); //
     };
 
-
     render() {
       const { open } = this.state;
-
+      const iframe = '<iframe src='+this.state.fileReference+' width="540" height="450"></iframe>';
       if (this.props.type === 'audio') {
         return (
           <div>
@@ -70,12 +70,8 @@ class ModalView extends React.Component {
           <div>
             <button className="ui button" onClick={this.onOpenModal}>Enlarge</button>
             <Modal open={open} onClose={this.onCloseModal} center>
-              <div className="pdf modal" style={{width: '600px'}}>
-                <Document file={this.state.fileReference}
-                          onLoadSuccess={this.onDocumentLoadSuccess}>
-                          <Page pageNumber={pageNumber} />
-                          </Document>
-                          <p>Page {pageNumber} of {numPages}</p>
+              <div className="doc viewer">
+                <DisplayIframe iframe={iframe} />
                 <div style={{marginTop: '10px', marginBottom: '10px'}}>{this.props.file.name} 
                 <br />uploaded on <Timestamp format='full'/></div>
                 <CommentBox />
