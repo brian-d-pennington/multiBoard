@@ -3,8 +3,6 @@ import Modal from 'react-responsive-modal';
 import ReactAudioPlayer from 'react-audio-player';
 import CommentBox from './comments/CommentBox';
 import firebase from 'firebase';
-//import FileViewer from 'react-file-viewer';
-import { Document } from 'react-pdf';
 import Timestamp from 'react-timestamp';
 
 
@@ -30,9 +28,11 @@ class ModalView extends React.Component {
       this.setState({FileTypeToConvert: null});
       this.setState({fileReference: null}); //
     };
+
+
     render() {
       const { open } = this.state;
-      console.log("props", this.props.type);
+
       if (this.props.type === 'audio') {
         return (
           <div>
@@ -44,7 +44,8 @@ class ModalView extends React.Component {
                   autoPlay={false}
                   controls={true}
                 />
-                <div style={{marginTop: '10px', marginBottom: '10px'}}>{this.props.file.name} uploaded on <Timestamp format='full'/></div>
+                <div style={{marginTop: '10px', marginBottom: '10px'}}>{this.props.file.name} 
+                <br />uploaded on <Timestamp format='full'/></div>
                 <CommentBox />
               </div>
             </Modal>
@@ -57,6 +58,8 @@ class ModalView extends React.Component {
             <button className="ui button" onClick={this.onOpenModal}>Enlarge</button>
             <Modal open={open} onClose={this.onCloseModal} center>
               <img src={this.state.fileReference} alt="image"/>
+              <div style={{marginTop: '10px', marginBottom: '10px'}}>{this.props.file.name} 
+                <br />uploaded on <Timestamp format='full'/></div>
               <CommentBox />
             </Modal>
           </div>
@@ -68,8 +71,13 @@ class ModalView extends React.Component {
             <button className="ui button" onClick={this.onOpenModal}>Enlarge</button>
             <Modal open={open} onClose={this.onCloseModal} center>
               <div className="pdf modal" style={{width: '600px'}}>
-                <div>{this.state.fileReference}</div>
-                <Document file={this.state.fileReference}/>
+                <Document file={this.state.fileReference}
+                          onLoadSuccess={this.onDocumentLoadSuccess}>
+                          <Page pageNumber={pageNumber} />
+                          </Document>
+                          <p>Page {pageNumber} of {numPages}</p>
+                <div style={{marginTop: '10px', marginBottom: '10px'}}>{this.props.file.name} 
+                <br />uploaded on <Timestamp format='full'/></div>
                 <CommentBox />
               </div>
             </Modal>

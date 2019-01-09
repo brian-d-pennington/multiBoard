@@ -3,15 +3,27 @@ import firebase from 'firebase';
 
 class Login extends React.Component {
     state = {
-        loggedIn: false
+        loggedIn: false,
+        userEmail: '',
+        userPass: ''
+    }
+    
+    handleEmailChange = (e) => {
+        this.setState({userEmail: e.target.value});
+    }
+
+    handlePasswordChange = (e) => {
+        this.setState({userPass: e.target.value});
     }
 
     loginHandler = () => {
-        const email = "publicimage66@yahoo.com";
-        const password = "Testpass123!"
+        const email = this.state.userEmail; 
+        const password = this.state.userPass;
+        console.log("Email variable: "+email);
         const auth = firebase.auth();
         const promise = auth.signInWithEmailAndPassword(email, password);
-        promise.catch(e => console.log(e.message));
+        promise.catch(
+            alert("Not a registered login!"));
         this.setState({loggedIn: true });
     }
 
@@ -25,12 +37,15 @@ class Login extends React.Component {
             return (
             <div className="ui container" style={{paddingLeft: '5px'}}>
                     <div className="ui input" style={{marginBottom: '3px'}}>
-                        <input id="txtEmail" type="email" placeholder="Email"></input>
+                        <input type="email" placeholder="Email"
+                            value={this.state.userEmail} onChange={this.handleEmailChange}></input>
                     </div>
                     <div className="ui input" style={{marginBottom: '3px'}}>
-                        <input  type="password" placeholder="Password"></input>
+                        <input type="password" placeholder="Password"
+                            value={this.state.userPass} onChange={this.handlePasswordChange}></input>
                     </div>
-                    <button className="ui button" style={{marginBottom: '3px'}} onClick={this.loginHandler}>
+                    <button className="ui button" style={{marginBottom: '3px'}} 
+                         onClick={this.loginHandler}>
                     Login
                     </button>
                 </div>
@@ -39,7 +54,7 @@ class Login extends React.Component {
         else {
             return (
                 <div className="ui container" style={{paddingLeft: '5px'}}>
-                    <div className="item">publicimage66@yahoo.com</div>
+                    <div className="item">{this.state.userEmail}</div>
                     <button className="ui button" style={{marginBottom: '3px'}} onClick={this.logOutHandler}>
                     Log Out
                     </button>

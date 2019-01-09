@@ -36,11 +36,10 @@ class Cell extends React.Component {
 
     FileUploadHandler = () => {
         let thisFile = this.state.selectedFile.name;
-        console.log("thisFile: ", thisFile)
         let storageRef = firebase.storage().ref(thisFile);
         let file = this.state.selectedFile;
         storageRef.put(file).then((snapshot) => {
-        console.log(snapshot);});
+        console.log("File uploaded! "+snapshot);});
         this.setState({
             uploadSuccessful: true,
             typeOfMediaFile: this.state.selectedFile.type,
