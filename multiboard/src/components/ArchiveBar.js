@@ -3,6 +3,10 @@ import ArchiveList from './ArchiveList';
 import Login from './Login';
 
 class ArchiveBar extends React.Component {
+    state = {
+        toArchiveList: this.props.toArchive
+    }
+    
     render() {
         return (
         <div className="ui vertical inverted sidebar menu left overlay visible" style={{width: '200px' }}>
@@ -15,7 +19,9 @@ class ArchiveBar extends React.Component {
                 multiBOARD
                 </div> 
                 <Login /> 
-                <div className="item"><ArchiveList /></div>
+                <div className="item"
+                    style={{marginLeft: '-10px'}}>
+                        <ArchiveList renderArchive={this.state.toArchiveList} /></div>
             </div>
         </div>
         );

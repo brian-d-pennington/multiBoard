@@ -2,7 +2,7 @@ import React from 'react';
 
 class ArchiveList extends React.Component {
     state = {
-        archivedItems: []
+        archivedItems: this.props.renderArchive
     }
 
     render() {
@@ -12,7 +12,8 @@ class ArchiveList extends React.Component {
                                     [  H  E  R  E  ]
                 {this.state.archivedItems.map((item, index) => {
                     return (
-                    <div key={this.state.archivedItems[index]}>{item}</div>);})}
+                    <div style={{marginTop: '10px'}} 
+                        key={this.state.archivedItems[index]}><a href={item}>DL from Firebase</a></div>);})}
             </div>
             );
     }

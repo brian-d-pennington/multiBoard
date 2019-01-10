@@ -57,7 +57,7 @@ class ModalView extends React.Component {
           <div>
             <button className="ui button" onClick={this.onOpenModal}>Enlarge</button>
             <Modal open={open} onClose={this.onCloseModal} center>
-              <img src={this.state.fileReference} alt="bunnies"/>
+              <img src={this.state.fileReference} style={{width: '350px'}} alt="bunnies"/>
               <div style={{marginTop: '10px', marginBottom: '10px'}}>{this.props.file.name} 
                 <br />uploaded on <Timestamp format='full'/></div>
               <CommentBox />

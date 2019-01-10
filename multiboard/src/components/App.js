@@ -17,7 +17,8 @@ class App extends React.Component {
     }
 
     state = {
-        clearCellData: false
+        clearCellData: false,
+        archiveList: []
     }
     onDragStart = (ev, id) => {
         ev.dataTransfer.setData("id", id);
@@ -29,16 +30,23 @@ class App extends React.Component {
 
     onDrop = (ev) => {
             this.setState({clearCellData: true});
+            this.addToArchive();
             setTimeout(() => {
                 this.setState({clearCellData: false})
             }, 2000);
         }
 
+    addToArchive = () => {
+        const localArray = this.state.archiveList;
+        localArray.push("https://firebasestorage.googleapis.com/v0/b/capstone-multiboard.appspot.com/o/Improv%20Demo.mp3?alt=media&token=189226bf-dab1-4f36-87fa-cd3b28f487e1");
+        this.setState({archiveList: localArray});
+    }
+
     render() {
         return (
             <div>
                 <div onDragOver={(e) => this.onDragOver(e)} onDrop={(e) => this.onDrop(e)}>   
-                    <ArchiveBar />
+                    <ArchiveBar toArchive={this.state.archiveList}/>
                 </div> 
                 <div className="ui three column grid" style={{
                     backgroundColor: '#ffedcc',
