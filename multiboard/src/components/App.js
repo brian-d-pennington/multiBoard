@@ -38,7 +38,7 @@ class App extends React.Component {
 
     addToArchive = () => {
         const localArray = this.state.archiveList;
-        localArray.push("https://firebasestorage.googleapis.com/v0/b/capstone-multiboard.appspot.com/o/Improv%20Demo.mp3?alt=media&token=189226bf-dab1-4f36-87fa-cd3b28f487e1");
+        localArray.push("https://firebasestorage.googleapis.com/v0/b/capstone-multiboard.appspot.com/o/finale.mp3?alt=media&token=62b3df91-d09f-4924-b4a7-3e97ecd1d63d");
         this.setState({archiveList: localArray});
     }
 
@@ -49,7 +49,7 @@ class App extends React.Component {
                     <ArchiveBar toArchive={this.state.archiveList}/>
                 </div> 
                 <div className="ui three column grid" style={{
-                    backgroundColor: '#ffedcc',
+                    backgroundColor: '#fcf5eb',
                     paddingLeft: '210px',
                     paddingTop: '10px'}}>
                 <div className="row">

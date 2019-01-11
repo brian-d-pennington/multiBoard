@@ -71,14 +71,14 @@ class Cell extends React.Component {
         if (!this.state.uploadSuccessful) {
             return (
                 <div className="cell ui segment" 
-                    style={{width: '240px', height: '240px', backgroundColor: '#fff97d' }}>
+                    style={{width: '240px', height: '240px', backgroundColor: '#F9D79A' }}>
                     <div className="field" style={{ marginTop: '150px', paddingLeft: '1px' }}>
                             <input 
                             style={{display: 'none' }} 
                             type="file" 
                             onChange={this.fileSelectedHandler} 
                             ref={fileInput => this.fileInput = fileInput} />
-                            <button className="ui button" onClick={() => this.fileInput.click()}>Choose File</button>
+                            <button className="ui button" style={{border: 'white'}} onClick={() => this.fileInput.click()}>Choose File</button>
                             <button className="ui button" onClick={this.FileUploadHandler}>Upload</button>
                         </div>
                    </div>
@@ -88,9 +88,9 @@ class Cell extends React.Component {
             if (this.state.typeOfMediaFile === "audio/mp3") {
                 return (
                     <div className="cell ui segment"
-                    style={{width: '240px', height: '240px', backgroundColor: '#fff97d' }}>
+                    style={{width: '240px', height: '240px', backgroundColor: '#F9D79A' }}>
                         <button className="ui button" style={{float: 'right', height: '5px', width: '5px',
-                        backgroundColor: '#fff97d', color: 'white' }} onClick={this.fileDelete}>X</button>
+                        backgroundColor: '#F9D79A', color: 'white' }} onClick={this.fileDelete}>X</button>
                         <div className="pic container" >
                             <img src={ require('./images/cassette.jpg') } alt={this.state.fileAddress.name}
                                 style={{
@@ -106,9 +106,9 @@ class Cell extends React.Component {
             else if (this.state.typeOfMediaFile === "image/jpeg") {
                 return (
                     <div className="cell ui segment"
-                    style={{width: '240px', height: '240px', backgroundColor: '#fff97d' }}>
+                    style={{width: '240px', height: '240px', backgroundColor: '#F9D79A' }}>
                         <button className="ui button" style={{float: 'right', height: '5px', width: '5px',
-                        backgroundColor: '#fff97d', color: 'white' }} onClick={this.fileDelete}>X</button>
+                        backgroundColor: '#F9D79A', color: 'white' }} onClick={this.fileDelete}>X</button>
                         <div className="pic container" >
                             <img src={ require('./images/image.jpg') } alt={this.state.fileAddress.name}
                              style={{width: '170px', height: '155px', paddingLeft: '32px', paddingTop: '-25px'}} />
@@ -123,9 +123,9 @@ class Cell extends React.Component {
             else {
                 return (
                     <div className="cell ui segment"
-                    style={{width: '240px', height: '240px', backgroundColor: '#fff97d' }}>
+                    style={{width: '240px', height: '240px', backgroundColor: '#F9D79A' }}>
                         <button className="ui button" style={{float: 'right', height: '5px', width: '5px',
-                        backgroundColor: '#fff97d', color: 'white' }} onClick={this.fileDelete}>X</button>
+                        backgroundColor: '#F9D79A', color: 'white' }} onClick={this.fileDelete}>X</button>
                         <div className="pic container" >
                             <img src={ require('./images/document.jpg') } alt={this.state.fileAddress.name} style={{
                                 width: '170px', height: '155px', paddingLeft: '32px', paddingTop: '-25px'}} />
