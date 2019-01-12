@@ -36,7 +36,7 @@ class ModalView extends React.Component {
       if (this.props.type === 'audio') {
         return (
           <div>
-            <button className="ui button" onClick={this.onOpenModal}>Enlarge</button>
+            <button className="ui button" style={{border: '1px solid white'}} onClick={this.onOpenModal}>Enlarge</button>
             <Modal open={open} onClose={this.onCloseModal} center>
               <div className="audio modal">
                 <ReactAudioPlayer 
@@ -55,7 +55,7 @@ class ModalView extends React.Component {
       else if (this.props.type === 'image') {
         return (
           <div>
-            <button className="ui button" onClick={this.onOpenModal}>Enlarge</button>
+            <button className="ui button" style={{border: '1px solid white'}} onClick={this.onOpenModal}>Enlarge</button>
             <Modal open={open} onClose={this.onCloseModal} center>
               <img src={this.state.fileReference} style={{width: '350px'}} alt="bunnies"/>
               <div style={{marginTop: '10px', marginBottom: '10px'}}>{this.props.file.name} 
@@ -68,7 +68,7 @@ class ModalView extends React.Component {
       else {
         return (
           <div>
-            <button className="ui button" onClick={this.onOpenModal}>Enlarge</button>
+            <button className="ui button" style={{border: '1px solid white'}} onClick={this.onOpenModal}>Enlarge</button>
             <Modal open={open} onClose={this.onCloseModal} center>
               <div className="doc viewer">
                 <DisplayIframe iframe={iframe} />

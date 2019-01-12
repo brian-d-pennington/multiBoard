@@ -32,8 +32,16 @@ class Cell extends React.Component {
         })
     }
 
+    getRandomIdNumber = max => {
+        return Math.floor(Math.random() * Math.floor(max));
+    }
+
     FileUploadHandler = () => {
         let thisFile = this.state.selectedFile.name;
+        let fileId = this.getRandomIdNumber(9999);
+        firebase.database().ref('files/'+fileId).set({
+            file: thisFile
+          });
         let storageRef = firebase.storage().ref(thisFile);
         let file = this.state.selectedFile;
         storageRef.put(file).then((snapshot) => {
@@ -78,8 +86,8 @@ class Cell extends React.Component {
                             type="file" 
                             onChange={this.fileSelectedHandler} 
                             ref={fileInput => this.fileInput = fileInput} />
-                            <button className="ui button" style={{border: 'white'}} onClick={() => this.fileInput.click()}>Choose File</button>
-                            <button className="ui button" onClick={this.FileUploadHandler}>Upload</button>
+                            <button className="ui button" style={{border: '1px solid white', marginLeft: '-2px'}} onClick={() => this.fileInput.click()}>Choose File</button>
+                            <button className="ui button" style={{border: '1px solid white', marginLeft: '-2px'}} onClick={this.FileUploadHandler}>Upload</button>
                         </div>
                    </div>
                 );
