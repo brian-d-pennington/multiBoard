@@ -12,7 +12,8 @@ class ModalView extends React.Component {
       open: false,
       FileTypeToConvert: null,
       fileReference: null,
-      fileAddress: this.props.fileAddress
+      fileAddress: this.props.fileAddress,
+      realtimeDB: this.props.rtDbRef
     };
    
     onOpenModal = () => {
@@ -46,7 +47,7 @@ class ModalView extends React.Component {
                 />
                 <div style={{marginTop: '10px', marginBottom: '10px'}}>{this.props.file.name} 
                 <br />uploaded on <Timestamp format='full'/></div>
-                <CommentBox />
+                <CommentBox rtDB={this.state.realtimeDB} />
               </div>
             </Modal>
           </div>
@@ -60,7 +61,7 @@ class ModalView extends React.Component {
               <img src={this.state.fileReference} style={{width: '350px'}} alt="bunnies"/>
               <div style={{marginTop: '10px', marginBottom: '10px'}}>{this.props.file.name} 
                 <br />uploaded on <Timestamp format='full'/></div>
-              <CommentBox />
+              <CommentBox rtDB={this.state.realtimeDB} />
             </Modal>
           </div>
         )
@@ -74,7 +75,7 @@ class ModalView extends React.Component {
                 <DisplayIframe iframe={iframe} />
                 <div style={{marginTop: '10px', marginBottom: '10px'}}>{this.props.file.name} 
                 <br />uploaded on <Timestamp format='full'/></div>
-                <CommentBox />
+                <CommentBox rtDB={this.state.realtimeDB} />
               </div>
             </Modal>
           </div>

@@ -5,14 +5,21 @@ import firebase from 'firebase';
 
 class CommentBox extends React.Component {
     state = {
-      data: []
+      data: [],
+      realtimeDatabase: this.props.rtDB
     };
     
     handleCommentSubmit = comment => {
+      let realtimeDB = this.state.realtimeDatabase;
+      // if `comments` not null, set data to saved objects
+      realtimeDB.set(`comments`); //works!
+      let commentsFolder = realtimeDB.child(`comments`);
+      commentsFolder.push(comment); //also works!
+      //realtimeDB.push(comment);
       this.state.data.push(comment);
       let comments = this.state.data;
-      const dbRef = firebase.database().ref(`/comments`);
-      dbRef.push(comments);
+      //const dbRef = firebase.database().ref(`/comments`);
+      //dbRef.push(comments);
       this.setState({data: comments});
     }
     render() {

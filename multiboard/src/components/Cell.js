@@ -11,7 +11,8 @@ class Cell extends React.Component {
             uploadSuccessful: false,
             typeOfMediaFile: null,
             fileAddress: null,
-            toClearCell: this.props.clearCell
+            toClearCell: this.props.clearCell,
+            realtimeDBref: null
         }
       }
 
@@ -38,8 +39,9 @@ class Cell extends React.Component {
 
     FileUploadHandler = () => {
         let thisFile = this.state.selectedFile.name;
-        let fileId = this.getRandomIdNumber(9999);
-        firebase.database().ref('files/'+fileId).set({
+        let randomizedFileId = this.getRandomIdNumber(9999);
+        let thisFileDbRef = firebase.database().ref('files/'+randomizedFileId);
+        thisFileDbRef.set({
             file: thisFile
           });
         let storageRef = firebase.storage().ref(thisFile);
@@ -50,12 +52,15 @@ class Cell extends React.Component {
             uploadSuccessful: true,
             typeOfMediaFile: this.state.selectedFile.type,
             //fileAddress: thisFile,
-            fileAddress: file
+            fileAddress: file,
+            realtimeDBref: thisFileDbRef
         });
         
     }
     
     fileDelete = () => {
+        //let realtimeDb = this.state.realtimeDBref;
+        //realtimeDb.delete();
         let dbRef = firebase.storage().ref();
         let fileToDelete = dbRef.child(this.state.selectedFile.name);
         fileToDelete.delete().then(() => {
@@ -67,7 +72,8 @@ class Cell extends React.Component {
             selectedFile: null,
             uploadSuccessful: false,
             typeOfMediaFile: null,
-            activeCell: false
+            activeCell: false,
+            realtimeDBref: null
         })
     }
 
@@ -105,7 +111,7 @@ class Cell extends React.Component {
                                 width: '170px', height: '155px', paddingLeft: '32px', paddingTop: '-25px'}} />
                         </div>
                         <div style={{paddingLeft: '55px'}}>
-                            <ModalView file={this.state.fileAddress} type={'audio'}/>
+                            <ModalView file={this.state.fileAddress} rtDbRef={this.state.realtimeDBref} type={'audio'}/>
                         </div>
                         
                     </div>
@@ -122,7 +128,7 @@ class Cell extends React.Component {
                              style={{width: '170px', height: '155px', paddingLeft: '32px', paddingTop: '-25px'}} />
                         </div>
                         <div style={{paddingLeft: '55px'}}>
-                            <ModalView file={this.state.fileAddress} type={'image'}/>
+                            <ModalView file={this.state.fileAddress} rtDbRef={this.state.realtimeDBref} type={'image'}/>
                         </div>
                         
                     </div>
@@ -139,7 +145,7 @@ class Cell extends React.Component {
                                 width: '170px', height: '155px', paddingLeft: '32px', paddingTop: '-25px'}} />
                         </div>
                         <div style={{paddingLeft: '55px'}}>
-                        <ModalView file={this.state.fileAddress} address={this.state.fileAddress} type={this.state.typeOfMediaFile}/>
+                        <ModalView file={this.state.fileAddress} rtDbRef={this.state.realtimeDBref} address={this.state.fileAddress} type={this.state.typeOfMediaFile}/>
                         </div>
                         
                     </div>
