@@ -5,38 +5,24 @@ import firebase from 'firebase';
 
 class CommentBox extends React.Component {
     state = {
-      data: [],
+      data: this.props.dataToPass, // this works for now, but will need props from parent state
       realtimeDatabase: this.props.rtDB
     };
     
-    lookForSavedComments = () => {
-      let realtimeDB = this.state.realtimeDatabase;
-      realtimeDB.child(`comments`).on('value', (snapshot) => {
-        let snap = snapshot.val();
-        if (snap === null) {
-          this.setState({data: []})
-        }
-        else {
-          this.setState({data: snap})
-        }
-      });
-    }
+    
 
     handleCommentSubmit = comment => {
       let realtimeDB = this.state.realtimeDatabase;
       let commentSection = realtimeDB.child(`comments`);
       commentSection.push(comment);
-      
-    
-      //realtimeDB.set(`comments`); //works!
-      //let commentsFolder = realtimeDB.child(`comments`);
-      //commentsFolder.push(comment); //also works!
-      //realtimeDB.push(comment);
       this.state.data.push(comment);
       let comments = this.state.data;
-      //const dbRef = firebase.database().ref(`/comments`);
-      //dbRef.push(comments);
       this.setState({data: comments});
+
+      realtimeDB.child(`comments`).once('value').then((snapshot) => {
+      const snap = snapshot.val();
+      console.log(Object.values(snap));
+      })
     }
     render() {
       return (

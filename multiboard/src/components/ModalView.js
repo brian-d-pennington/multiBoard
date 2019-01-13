@@ -13,23 +13,41 @@ class ModalView extends React.Component {
       FileTypeToConvert: null,
       fileReference: null,
       fileAddress: this.props.fileAddress,
-      realtimeDB: this.props.rtDbRef
+      realtimeDB: this.props.rtDbRef,
+      commentData: []
     };
    
     onOpenModal = () => {
         let storageRef = firebase.storage().ref();
         let stringChild = this.props.file.name;
+        this.lookForSavedComments();
         storageRef.child(stringChild).getDownloadURL().then((url) =>{
            this.setState({ fileReference: url,
-            open: true });
+                           open: true });
           });
         };
 
     onCloseModal = () => {
-      this.setState({ open: false });
-      this.setState({FileTypeToConvert: null});
-      this.setState({fileReference: null}); //
+      this.setState({ open: false,
+                      FileTypeToConvert: null,
+                      fileReference: null
+        });
     };
+
+    lookForSavedComments = () => {
+      let realtimeDB = this.state.realtimeDB; 
+        realtimeDB.child(`comments`).once('value').then((snapshot) => {
+        const snap = snapshot.val();
+        if (snap === null) {
+          console.log("null");
+        }
+        else {
+          const savedComments = Object.values(snap);
+          this.setState({commentData: savedComments})
+          console.log("snap " +savedComments);
+        }
+      });
+    }
 
     render() {
       const { open } = this.state;
@@ -47,7 +65,7 @@ class ModalView extends React.Component {
                 />
                 <div style={{marginTop: '10px', marginBottom: '10px'}}>{this.props.file.name} 
                 <br />uploaded on <Timestamp format='full'/></div>
-                <CommentBox rtDB={this.state.realtimeDB} />
+                <CommentBox rtDB={this.state.realtimeDB} dataToPass={this.state.commentData} />
               </div>
             </Modal>
           </div>
@@ -57,11 +75,11 @@ class ModalView extends React.Component {
         return (
           <div>
             <button className="ui button" style={{border: '1px solid white'}} onClick={this.onOpenModal}>Enlarge</button>
-            <Modal open={open} onClose={this.onCloseModal} center>
+            <Modal open={open} dataToPass={this.state.commentData} onClose={this.onCloseModal} center>
               <img src={this.state.fileReference} style={{width: '350px'}} alt="bunnies"/>
               <div style={{marginTop: '10px', marginBottom: '10px'}}>{this.props.file.name} 
                 <br />uploaded on <Timestamp format='full'/></div>
-              <CommentBox rtDB={this.state.realtimeDB} />
+              <CommentBox rtDB={this.state.realtimeDB} dataToPass={this.state.commentData}/>
             </Modal>
           </div>
         )
@@ -70,12 +88,12 @@ class ModalView extends React.Component {
         return (
           <div>
             <button className="ui button" style={{border: '1px solid white'}} onClick={this.onOpenModal}>Enlarge</button>
-            <Modal open={open} onClose={this.onCloseModal} center>
+            <Modal open={open} dataToPass={this.state.commentData} onClose={this.onCloseModal} center>
               <div className="doc viewer">
                 <DisplayIframe iframe={iframe} />
                 <div style={{marginTop: '10px', marginBottom: '10px'}}>{this.props.file.name} 
                 <br />uploaded on <Timestamp format='full'/></div>
-                <CommentBox rtDB={this.state.realtimeDB} />
+                <CommentBox rtDB={this.state.realtimeDB} dataToPass={this.state.commentData}/>
               </div>
             </Modal>
           </div>
