@@ -9,12 +9,28 @@ class CommentBox extends React.Component {
       realtimeDatabase: this.props.rtDB
     };
     
+    lookForSavedComments = () => {
+      let realtimeDB = this.state.realtimeDatabase;
+      realtimeDB.child(`comments`).on('value', (snapshot) => {
+        let snap = snapshot.val();
+        if (snap === null) {
+          this.setState({data: []})
+        }
+        else {
+          this.setState({data: snap})
+        }
+      });
+    }
+
     handleCommentSubmit = comment => {
       let realtimeDB = this.state.realtimeDatabase;
-      // if `comments` not null, set data to saved objects
-      realtimeDB.set(`comments`); //works!
-      let commentsFolder = realtimeDB.child(`comments`);
-      commentsFolder.push(comment); //also works!
+      let commentSection = realtimeDB.child(`comments`);
+      commentSection.push(comment);
+      
+    
+      //realtimeDB.set(`comments`); //works!
+      //let commentsFolder = realtimeDB.child(`comments`);
+      //commentsFolder.push(comment); //also works!
       //realtimeDB.push(comment);
       this.state.data.push(comment);
       let comments = this.state.data;
