@@ -138,6 +138,24 @@ class Cell extends React.Component {
                     </div>
                 )
             }
+            else if (this.state.typeOfMediaFile === "video/mp4") { // video
+                return (
+                    <div className="cell ui segment"
+                    style={{width: '240px', height: '240px', backgroundColor: '#F9D79A' }}>
+                        <button className="ui button" style={{float: 'right', height: '5px', width: '5px',
+                        backgroundColor: '#F9D79A', color: 'white' }} onClick={this.fileDelete}>X</button>
+                        <div className="pic container" >
+                            <img src={ require('./images/video.jpg') } alt={this.state.fileAddress.name}
+                                style={{
+                                width: '170px', height: '155px', paddingLeft: '32px', paddingTop: '-25px'}} />
+                        </div>
+                        <div style={{paddingLeft: '55px'}}>
+                            <ModalView className='modal' file={this.state.fileAddress} rtDbRef={this.state.realtimeDBref} type={'video'}/>
+                        </div>
+                        
+                    </div>
+                )
+            }
             else {
                 return (
                     <div className="cell ui segment"

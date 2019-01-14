@@ -6,7 +6,6 @@ import firebase from 'firebase';
 import Timestamp from 'react-timestamp';
 import DisplayIframe from './DisplayIframe';
 
-
 class ModalView extends React.Component {
     state = {
       open: false,
@@ -83,6 +82,22 @@ class ModalView extends React.Component {
           </div>
         )
       } 
+      else if (this.props.type === 'video') { // video modal
+        return (
+          <div>
+            <button className="ui button" style={{border: '1px solid white'}} onClick={this.onOpenModal}>Enlarge</button>
+            <Modal open={open} onClose={this.onCloseModal} center>
+              <div className="video modal">
+              
+                <DisplayIframe iframe={iframe} />
+                <div style={{marginTop: '10px', marginBottom: '10px'}}>{this.props.file.name} 
+                <br /><div style={{fontSize: '11px'}}>uploaded on <Timestamp format='full'/></div></div>
+                <CommentBox rtDB={this.state.realtimeDB} dataToPass={this.state.commentData} />
+              </div>
+            </Modal>
+          </div>
+        );
+      }
       else {
         return (
           <div>
