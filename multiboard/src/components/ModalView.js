@@ -43,8 +43,7 @@ class ModalView extends React.Component {
         }
         else {
           const savedComments = Object.values(snap);
-          this.setState({commentData: savedComments})
-          console.log("snap " +savedComments);
+          this.setState({commentData: savedComments});
         }
       });
     }
@@ -64,7 +63,7 @@ class ModalView extends React.Component {
                   controls={true}
                 />
                 <div style={{marginTop: '10px', marginBottom: '10px'}}>{this.props.file.name} 
-                <br />uploaded on <Timestamp format='full'/></div>
+                <br /><div style={{fontSize: '11px'}}>uploaded on <Timestamp format='full'/></div></div>
                 <CommentBox rtDB={this.state.realtimeDB} dataToPass={this.state.commentData} />
               </div>
             </Modal>
@@ -77,8 +76,8 @@ class ModalView extends React.Component {
             <button className="ui button" style={{border: '1px solid white'}} onClick={this.onOpenModal}>Enlarge</button>
             <Modal open={open} dataToPass={this.state.commentData} onClose={this.onCloseModal} center>
               <img src={this.state.fileReference} style={{width: '350px'}} alt="bunnies"/>
-              <div style={{marginTop: '10px', marginBottom: '10px'}}>{this.props.file.name} 
-                <br />uploaded on <Timestamp format='full'/></div>
+              <div style={{marginTop: '10px', marginBottom: '10px', fontSize: '10px'}}>{this.props.file.name} 
+              <br /><div style={{fontSize: '11px'}}>uploaded on <Timestamp format='full'/></div></div>
               <CommentBox rtDB={this.state.realtimeDB} dataToPass={this.state.commentData}/>
             </Modal>
           </div>
@@ -91,8 +90,8 @@ class ModalView extends React.Component {
             <Modal open={open} dataToPass={this.state.commentData} onClose={this.onCloseModal} center>
               <div className="doc viewer">
                 <DisplayIframe iframe={iframe} />
-                <div style={{marginTop: '10px', marginBottom: '10px'}}>{this.props.file.name} 
-                <br />uploaded on <Timestamp format='full'/></div>
+                <div style={{marginTop: '10px', marginBottom: '10px', fontSize: '10px'}}>{this.props.file.name} 
+                <br /><div style={{fontSize: '11px'}}>uploaded on <Timestamp format='full'/></div></div>
                 <CommentBox rtDB={this.state.realtimeDB} dataToPass={this.state.commentData}/>
               </div>
             </Modal>

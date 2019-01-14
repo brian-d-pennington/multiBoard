@@ -59,14 +59,18 @@ class Cell extends React.Component {
     }
     
     fileDelete = () => {
-        //let realtimeDb = this.state.realtimeDBref;
-        //realtimeDb.delete();
+        let realtimeDb = this.state.realtimeDBref;
+        realtimeDb.remove().then(() => {
+            console.log("file's comments removed");
+          }).catch((error) => {
+            console.log(error);
+          });        
         let dbRef = firebase.storage().ref();
         let fileToDelete = dbRef.child(this.state.selectedFile.name);
         fileToDelete.delete().then(() => {
             console.log("file removed");
           }).catch((error) => {
-            console.log("file NOT removed");
+            console.log(error);
           });
         this.setState({
             selectedFile: null,
@@ -111,7 +115,7 @@ class Cell extends React.Component {
                                 width: '170px', height: '155px', paddingLeft: '32px', paddingTop: '-25px'}} />
                         </div>
                         <div style={{paddingLeft: '55px'}}>
-                            <ModalView file={this.state.fileAddress} rtDbRef={this.state.realtimeDBref} type={'audio'}/>
+                            <ModalView className='modal' file={this.state.fileAddress} rtDbRef={this.state.realtimeDBref} type={'audio'}/>
                         </div>
                         
                     </div>

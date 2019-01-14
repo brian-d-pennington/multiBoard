@@ -18,11 +18,6 @@ class CommentBox extends React.Component {
       this.state.data.push(comment);
       let comments = this.state.data;
       this.setState({data: comments});
-
-      realtimeDB.child(`comments`).once('value').then((snapshot) => {
-      const snap = snapshot.val();
-      console.log(Object.values(snap));
-      })
     }
     render() {
       return (

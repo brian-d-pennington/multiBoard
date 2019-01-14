@@ -5,10 +5,10 @@ class Comment extends React.Component {
     render() {
         return (
           <div className="comment">
-            <h3 className="author">{this.props.author}</h3>
-            {this.props.text}
+            <h4 className="author" style={{marginTop: '7px', marginBottom: '-2px'}}>{this.props.author}</h4>
+            "{this.props.text}"
             <br />
-            <Timestamp format='full' />
+            <Timestamp style={{fontSize: '8px' }} format='full' />
           </div>
         );
       }
