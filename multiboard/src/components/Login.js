@@ -53,7 +53,9 @@ class Login extends React.Component {
             return (
                 <div className="ui container" style={{paddingLeft: '5px'}}>
                     <div className="item">{this.state.userEmail}</div>
-                    <button className="ui button" style={{marginBottom: '3px'}} onClick={this.logOutHandler}>
+                    <button className="ui button" 
+                        style={{marginBottom: '3px', marginLeft: '12px'}} 
+                        onClick={this.logOutHandler}>
                     Log Out
                     </button>
                 </div>

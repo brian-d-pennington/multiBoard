@@ -60,6 +60,7 @@ class ModalView extends React.Component {
                   src={this.state.fileReference}
                   autoPlay={false}
                   controls={true}
+                  style={{marginTop: '20px'}}
                 />
                 <div style={{marginTop: '10px', marginBottom: '10px'}}>{this.props.file.name} 
                 <br /><div style={{fontSize: '11px'}}>uploaded on <Timestamp format='full'/></div></div>
@@ -73,8 +74,8 @@ class ModalView extends React.Component {
         return (
           <div>
             <button className="ui button" style={{border: '1px solid white'}} onClick={this.onOpenModal}>Enlarge</button>
-            <Modal open={open} dataToPass={this.state.commentData} onClose={this.onCloseModal} center>
-              <img src={this.state.fileReference} style={{width: '350px'}} alt="bunnies"/>
+            <Modal open={open} dataToPass={this.state.commentData} onClose={this.onCloseModal} center >
+              <img src={this.state.fileReference} style={{width: '350px'}} alt="bunnies" style={{marginTop: '20px'}}/>
               <div style={{marginTop: '10px', marginBottom: '10px', fontSize: '10px'}}>{this.props.file.name} 
               <br /><div style={{fontSize: '11px'}}>uploaded on <Timestamp format='full'/></div></div>
               <CommentBox rtDB={this.state.realtimeDB} dataToPass={this.state.commentData}/>
@@ -89,7 +90,7 @@ class ModalView extends React.Component {
             <Modal open={open} onClose={this.onCloseModal} center>
               <div className="video modal">
               
-                <DisplayIframe iframe={iframe} />
+                <DisplayIframe iframe={iframe} style={{marginTop: '20px'}}/>
                 <div style={{marginTop: '10px', marginBottom: '10px'}}>{this.props.file.name} 
                 <br /><div style={{fontSize: '11px'}}>uploaded on <Timestamp format='full'/></div></div>
                 <CommentBox rtDB={this.state.realtimeDB} dataToPass={this.state.commentData} />
@@ -104,7 +105,7 @@ class ModalView extends React.Component {
             <button className="ui button" style={{border: '1px solid white'}} onClick={this.onOpenModal}>Enlarge</button>
             <Modal open={open} dataToPass={this.state.commentData} onClose={this.onCloseModal} center>
               <div className="doc viewer">
-                <DisplayIframe iframe={iframe} />
+                <DisplayIframe iframe={iframe}  style={{marginTop: '20px'}}/>
                 <div style={{marginTop: '10px', marginBottom: '10px', fontSize: '10px'}}>{this.props.file.name} 
                 <br /><div style={{fontSize: '11px'}}>uploaded on <Timestamp format='full'/></div></div>
                 <CommentBox rtDB={this.state.realtimeDB} dataToPass={this.state.commentData}/>
